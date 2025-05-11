@@ -3,7 +3,7 @@ import LogoImage from '../../assets/Standard Collection 10.png'
 import { useState } from 'react'
 
 export default function SideBar() {
-    const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(true)
 
     const sidebarMenu = [
         {

@@ -1,13 +1,12 @@
-import { BloodPressureGraph, BloodSugarGraph, HeartRateGraph } from "@/assets";
+import { BloodPressure, BloodPressureGraph, BloodSugar, BloodSugarGraph, HeartRate, HeartRateGraph } from "@/assets";
 
 type HeathCardProp = {
-  image: string
   title: "BloodSugar" | "HeartRate" | "BloodPressure";
   status: string
   count: number
 };
 
-export default function HealthCard({ image, title, count, status }: HeathCardProp) {
+export default function HealthCard({ title, count, status }: HeathCardProp) {
 
   const unitType = {
     BloodSugar: 'mg/dl',
@@ -25,11 +24,17 @@ export default function HealthCard({ image, title, count, status }: HeathCardPro
     BloodPressure: 'bg-[#D0FBFF]'
   }
 
+  const imageType = {
+    BloodSugar: BloodSugar,
+    HeartRate: HeartRate,
+    BloodPressure: BloodPressure
+  }
+
   return (
-    <div className="w-[200px] h-[250px] border rounded-lg">
-      <div className="p-4">
+    <div className="w-full h-[250px] max-xl:h-fit border rounded-lg overflow-hidden">
+      <div className="p-4 max-xl:flex max-xl:justify-between max-xl:items-center max-xl:flex-wrap">
         <div className="flex items-center gap-3">
-          <img src={image} alt="icon" />
+          <img src={imageType[title]} alt="icon" />
           <p className="font-semibold">{title}</p>
         </div>
         <div>
@@ -38,7 +43,7 @@ export default function HealthCard({ image, title, count, status }: HeathCardPro
           </div>
           <span className={`text-[12px] py-1 px-2 ${statusType[title]} rounded-sm`} >{status}</span>
         </div>
-        <img src={graphType[title]} alt="graph-image" />
+        <img src={graphType[title]} alt="graph-image" className="w-full h-[70px] max-xl:hidden" />
       </div>
     </div>
   )

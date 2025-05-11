@@ -6,6 +6,8 @@ import BloodSugarGraph from "./Group 11.png"
 import HeartRateGraph from "./Group 29.png"
 import BloodPressureGraph from "./Group 30.png"
 import MeasureScale from "./Group 2.png"
+import BMIScale from "./Group 5.png"
+import Body from "./body.png"
 
 
 export {
@@ -15,5 +17,7 @@ export {
     BloodPressureGraph,
     HeartRateGraph,
     BloodSugarGraph,
-    MeasureScale
+    MeasureScale,
+    BMIScale,
+    Body
 }
