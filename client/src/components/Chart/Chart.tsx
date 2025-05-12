@@ -15,15 +15,11 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
+import { usePatientProgress } from "@/hooks/patient/usePatientProgress"
+import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { Loader2 } from "lucide-react"
 
-const chartData = [
-  { month: "January", weight: 186 },
-  { month: "February", weight: 305 },
-  { month: "March", weight: 237 },
-  { month: "April", weight: 10 },
-  { month: "May", weight: 209 },
-  { month: "June", weight: 214 },
-]
 
 const chartConfig = {
   weight: {
@@ -32,48 +28,82 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
+interface ProgressData {
+  recordedAt: string | number | Date
+  month: string;
+  weight: string;
+}
+
+
 export function Chart() {
+  const navigate = useNavigate();
+  const [progress, setProgress] = useState<ProgressData []>([])
+  const { data, isFetching, isError } = usePatientProgress();
+
+ 
+  useEffect(() => {
+    if (data) {
+      setProgress(data.data)
+    }
+  }, [data])
+
+  useEffect(() => {
+    if (isError) {
+      navigate('/error')
+    }
+  }, [isError, navigate]);
+
+  const chartData = progress.map((items)=>{
+    return {
+      month:new Date(items.recordedAt).toLocaleString("en-US", { month: "long" }),
+      weight:parseInt(items.weight)
+    }
+  });
+
+
+
   return (
     <Card >
       <CardHeader>
         <CardTitle>Activity Growth</CardTitle>
         <CardDescription>
-          Showing total visitors for the last 6 months
+          Showing total weight for the last 6 months
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer className="" config={chartConfig}>
-          <AreaChart
-            accessibilityLayer
-            data={chartData}
-            margin={{
-              left: 5,
-              right: 5,
-            }}
-          >
-            <CartesianGrid vertical={false} />
-            <XAxis
-              dataKey="month"
-              tickLine={false}
-              axisLine={false}
-              tickMargin={5}
-              tickFormatter={(value) => value.slice(0, 3)}
-            />
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent indicator="line" />}
-            />
-            <Area
-              dataKey="weight"
-              type="natural"
-              fill="var(--color-weight)"
-              fillOpacity={0.4}
-              stroke="var(--color-weight)"
-            />
-          </AreaChart>
-        </ChartContainer>
+        {isFetching ? <div className="w-full h-full flex justify-center"><Loader2 /></div> :
+          <ChartContainer className="" config={chartConfig}>
+            <AreaChart
+              accessibilityLayer
+              data={chartData}
+              margin={{
+                left: 5,
+                right: 5,
+              }}
+            >
+              <CartesianGrid vertical={false} />
+              <XAxis
+                dataKey="month"
+                tickLine={false}
+                axisLine={false}
+                tickMargin={5}
+                tickFormatter={(value) => value.slice(0, 3)}
+              />
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent indicator="line" />}
+              />
+              <Area
+                dataKey="weight"
+                type="natural"
+                fill="var(--color-weight)"
+                fillOpacity={0.4}
+                stroke="var(--color-weight)"
+              />
+            </AreaChart>
+          </ChartContainer>}
       </CardContent>
-      
+
     </Card>
   )
 }

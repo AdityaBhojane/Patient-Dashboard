@@ -2,33 +2,35 @@ import { LayoutDashboard, LogOut, Package, PanelLeftClose, PanelLeftOpen } from 
 import LogoImage from '../../assets/Standard Collection 10.png'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAuthStore } from '@/store/authStore'
 
 export default function SideBar() {
     const navigate = useNavigate()
     const [isOpen, setIsOpen] = useState(true)
+    const setClearAuth = useAuthStore(state => state.setClearAuth)
 
     const sidebarMenu = [
         {
             title: 'Dashboard',
             icon: <LayoutDashboard className='size-10 text-[#707070] hover:text-white hover:bg-[#303030] transition-all p-1 rounded-md' />,
-            path:'/dashboard'
+            path: '/dashboard'
         },
         {
             title: 'Shipments',
             icon: <Package className='size-10 text-[#707070] hover:text-white hover:bg-[#303030] transition-all p-1 rounded-md' />,
-            path:'/shipment'
+            path: '/shipment'
         },
         {
             title: 'LogOut',
             icon: <LogOut className='size-10 text-[#707070] hover:text-red-400 hover:bg-[#303030] transition-all p-1 rounded-md' />,
-            path:"/signin"
+            path: "/signin"
         },
     ]
 
     return (
-        <div className={`${isOpen? "w-[200px]":"w-[80px]"} h-screen  border transition-all`}>
+        <div className={`${isOpen ? "w-[200px]" : "w-[80px]"} h-screen  border transition-all`}>
             <div onClick={() => setIsOpen((pre) => !pre)} className={`m-6 flex justify-end-safe cursor-pointer`}>
-                {isOpen? <PanelLeftClose/>:<PanelLeftOpen/>}
+                {isOpen ? <PanelLeftClose /> : <PanelLeftOpen />}
             </div>
             <div className="m-5">
                 <img onClick={() => setIsOpen((pre) => !pre)} src={LogoImage} alt="logo" className='cursor-pointer' />
@@ -37,7 +39,18 @@ export default function SideBar() {
             <div className={`flex flex-col gap-8 ml-5`}>
                 {sidebarMenu.map((item, index) => {
                     return (
-                        <div key={index} onClick={()=> navigate(item.path)} className={`${isOpen? "flex":""} hover:font-semibold items-center gap-2 cursor-pointer `}>
+                        <div key={index} onClick={() => {
+                            if (item.title === 'LogOut') {
+                                navigate(item.path);
+                                setClearAuth();
+                                console.log('Logout')
+                            } else {
+                                navigate(item.path)
+                            }
+                        }
+                        }
+                            className={`${isOpen ? "flex" : ""} hover:font-semibold items-center gap-2 cursor-pointer `}
+                        >
                             {item.icon}
                             {isOpen ? item.title : ""}
                         </div>

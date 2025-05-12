@@ -21,10 +21,10 @@ const shipmentSchema = new Schema({
         type:Schema.Types.ObjectId,
         ref:"User"
     }, 
-    medicationId:{
+    medicationIds:[{
         type:Schema.Types.ObjectId,
         ref:"Medication"
-    },  
+    }],  
 },{timestamps:true});
 
 

@@ -3,7 +3,7 @@ import { Shipment } from "../model/shipment.js"
 
 export const getShipmentByIdService = async(id)=>{
     try {
-        const response = await Shipment.find({userId:id}).populate('medicationId');
+        const response = await Shipment.find({userId:id}).populate('medicationIds');
         if(!response) throw new Error("no shipment for user");
         console.log(response.length)
         return response

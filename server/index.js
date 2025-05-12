@@ -4,6 +4,7 @@ import { connectDB } from './config/dbConfig.js';
 import userRouter from './routes/userRouter.js';
 import shipmentRouter from './routes/shipmentRouter.js';
 import { Medication } from "./model/medication.js";
+import patientRouter from './routes/patientDetails.js';
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(express.json());
 
 app.use("/api/v1",userRouter);
 app.use("/api/v1",shipmentRouter);
+app.use("/api/v1",patientRouter);
 
 app.get("/ping",(req,res)=>{
     res.json({

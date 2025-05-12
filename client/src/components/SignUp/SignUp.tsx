@@ -1,25 +1,33 @@
-import { useState } from "react"
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { useEffect, useState } from "react"
 import { Loader2 } from "lucide-react"
+import { useSignup } from "@/hooks/auth/useSignUp"
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
-    username:"",
-    email:"",
-    password:""
+    username: "",
+    email: "",
+    password: ""
   })
 
-  const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
-  const [success, setSuccess] = useState(false)
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setError("")
-    setSuccess(false)
-    setLoading(true)
-  }
+    signUpMutation(formData)
+  };
 
-  console.log(formData)
+  const { signUpMutation, isSuccess: success, isPending: loading, error: signUpError } = useSignup()
+
+  useEffect(() => {
+    if (signUpError) {
+      // @ts-ignore
+      setError(signUpError?.response?.data?.error)
+    }
+  }, [signUpError])
+
+
 
   return (
     <div className="max-w-md w-full bg-[#F8F1EA] p-8 rounded-2xl shadow-md border border-[#E6D8CA]">
@@ -49,7 +57,7 @@ export default function SignUp() {
             type="username"
             className="w-full px-4 py-2 border border-[#D6C1AF] rounded-md bg-white text-[#3E2F2C] focus:outline-none focus:ring-2 focus:ring-[#CE9B6A]"
             value={formData.username}
-            onChange={(e) => setFormData({...formData, username:e.target.value})}
+            onChange={(e) => setFormData({ ...formData, username: e.target.value })}
             disabled={loading}
             required
             minLength={3}
@@ -64,7 +72,7 @@ export default function SignUp() {
             type="email"
             className="w-full px-4 py-2 border border-[#D6C1AF] rounded-md bg-white text-[#3E2F2C] focus:outline-none focus:ring-2 focus:ring-[#CE9B6A]"
             value={formData.email}
-            onChange={(e) => setFormData({...formData, email:e.target.value})}
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             disabled={loading}
             required
           />
@@ -79,7 +87,7 @@ export default function SignUp() {
             type="password"
             className="w-full px-4 py-2 border border-[#D6C1AF] rounded-md bg-white text-[#3E2F2C] focus:outline-none focus:ring-2 focus:ring-[#CE9B6A]"
             value={formData.password}
-            onChange={(e) => setFormData({...formData, password:e.target.value})}
+            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             disabled={loading}
             required
             minLength={6}

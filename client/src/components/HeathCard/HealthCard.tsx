@@ -1,17 +1,19 @@
 import { BloodPressure, BloodPressureGraph, BloodSugar, BloodSugarGraph, HeartRate, HeartRateGraph } from "@/assets";
+import { Loader2 } from "lucide-react";
 
 type HeathCardProp = {
   title: "Blood Sugar" | "Heart Rate" | "Blood Pressure";
-  status: string
-  count: number
+  status: string | undefined
+  count: string | undefined
+  isFetching:boolean
 };
 
-export default function HealthCard({ title, count, status }: HeathCardProp) {
+export default function HealthCard({ title, count, status,isFetching }: HeathCardProp) {
 
   const unitType = {
     "Blood Sugar": 'mg/dl',
     "Heart Rate": 'bpm',
-    "Blood Pressure": '/72 mmhg'
+    "Blood Pressure": ' mmhg'
   }
   const graphType = {
     "Blood Sugar": BloodSugarGraph,
@@ -39,7 +41,7 @@ export default function HealthCard({ title, count, status }: HeathCardProp) {
         </div>
         <div>
           <div className="flex items-end gap-1 pt-4 mb-2">
-            <p className="text-3xl ">{count}</p><span>{unitType[title]}</span>
+            <p className="text-3xl ">{isFetching? <Loader2/>:count}</p><span>{unitType[title]}</span>
           </div>
           <span className={`text-[12px] py-1 px-2 ${statusType[title]} rounded-sm`} >{status}</span>
         </div>

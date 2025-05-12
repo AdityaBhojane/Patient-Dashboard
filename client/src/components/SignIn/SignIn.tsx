@@ -1,5 +1,8 @@
-import { useState } from "react"
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { useEffect, useState } from "react"
 import { Loader2 } from "lucide-react"
+import { useSignin } from "@/hooks/auth/useSignIn"
+import { useNavigate } from "react-router-dom"
 
 export default function SignIn() {
   const [formData, setFormData] = useState({
@@ -7,18 +10,32 @@ export default function SignIn() {
     password:""
   })
 
-  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
   const [error, setError] = useState("")
-  const [success, setSuccess] = useState(false)
+  const [success, setSuccess] = useState(false);
+
+  const {isPending:loading,signinMutation,error:signInError, isSuccess} = useSignin()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setError("")
     setSuccess(false)
-    setLoading(true)
+    signinMutation(formData)
   }
 
-  console.log(formData)
+  useEffect(()=>{
+    if(signInError){
+      // @ts-ignore
+      setError(signInError?.response?.data?.error)
+    }
+  },[signInError]);
+
+  useEffect(()=>{
+    if(isSuccess){
+      navigate('/dashboard')
+    }
+  },[isSuccess, navigate])
+
+
 
   return (
     <div className="max-w-md w-full bg-[#F8F1EA] p-8 rounded-2xl shadow-md border border-[#E6D8CA]">
