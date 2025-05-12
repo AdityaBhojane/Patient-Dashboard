@@ -3,7 +3,7 @@ import {model, Schema} from 'mongoose';
 const shipmentSchema = new Schema({
     shipmentDate:{
         type:Date,
-        require:true
+        required:true
     },
     expectedArrival:{
         type:Date,
@@ -15,7 +15,7 @@ const shipmentSchema = new Schema({
     },
     trackingNumber:{
         type:String,
-        require:true
+        required:true
     },
    userId:{
         type:Schema.Types.ObjectId,

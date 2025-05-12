@@ -4,11 +4,11 @@ import argon2 from 'argon2';
 const userSchema = new Schema({
     username:{
         type:String,
-        require:true
+        required:true
     },
     email:{
         type:String,
-        require:true,
+        required:true,
         lowercase:true,
         match:[ 
             /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
@@ -17,7 +17,7 @@ const userSchema = new Schema({
     },
     password:{
         type:String,
-        require:true
+        required:true
     },
     patientDetailsId:{
         type:Schema.Types.ObjectId,

@@ -3,23 +3,23 @@ import { model, Schema } from "mongoose";
 const medicationSchema = new Schema({
   name: {
     type: String,
-    require: true,
+    required: true,
   },
   type: {
     type: String,
-    require: true,
+    required: true,
   },
   dosageOptions: {
     type: String,
-    require: true,
+    required: true,
   },
   frequency: {
     type: String,
-    require: true,
+    required: true,
   },
   description: {
     type: String,
-    require: true,
+    required: true,
   },
 },{timestamps:true});
 

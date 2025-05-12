@@ -3,15 +3,15 @@ import { model, Schema } from "mongoose";
 const ProgressTrackSchema = new Schema({
   weight: {
     type: String,
-    require: true,
+    required: true,
   },
   BMI: {
     type: Number,
-    require:true
+    required:true
   },
   recordedAt: {
     type: Date,
-    require: true,
+    required: true,
   },
   userId:{
     type:Schema.Types.ObjectId,

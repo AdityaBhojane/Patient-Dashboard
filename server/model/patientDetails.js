@@ -4,23 +4,23 @@ const patientDetailsSchema = new Schema(
   {
     BMI: {
       type: Number,
-      require: true,
+      required: true,
     },
     BloodSugar: {
       type: String,
-      require: true,
+      required: true,
     },
     HeartRate: {
       type: String,
-      require: true,
+      required: true,
     },
     BloodPressure: {
       type: String,
-      require: true,
+      required: true,
     },
     RecordAt: {
       type: Date,
-      require: true,
+      required: true,
     },
     userId: {
       type: Schema.Types.ObjectId,

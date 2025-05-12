@@ -4,27 +4,27 @@ const patientMeasurementSchema = new Schema(
   {
     height: {
       type: String,
-      require: true,
+      required: true,
     },
     weigh: {
       type: String,
-      require: true,
+      required: true,
     },
     chest: {
       type: String,
-      require: true,
+      required: true,
     },
     waist: {
       type: String,
-      require: true,
+      required: true,
     },
     hip: {
       type: String,
-      require: true,
+      required: true,
     },
     RecordAt: {
       type: Date,
-      require: true,
+      required: true,
     },
     userId: {
       type: Schema.Types.ObjectId,
