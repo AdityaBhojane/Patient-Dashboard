@@ -10,7 +10,7 @@ export default function Measurements() {
 
 
   return (
-    <div className='w-[600px] max-lg:w-full bg-[#303030] h-screen p-10 rounded-l-4xl overflow-hidden  max-2xl:h-fit'>
+    <div className='w-[600px] max-lg:w-full bg-[#303030] min-h-fit h-full p-10 rounded-l-4xl overflow-hidden  max-2xl:h-fit'>
       <div className="flex max-2xl:flex-col ">
         <div className="flex flex-col gap-4 p-1 px-3">
           <MeasureCard type="Weight" />

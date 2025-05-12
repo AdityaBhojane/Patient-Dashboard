@@ -1,22 +1,27 @@
 import { LayoutDashboard, LogOut, Package, PanelLeftClose, PanelLeftOpen } from 'lucide-react'
 import LogoImage from '../../assets/Standard Collection 10.png'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function SideBar() {
+    const navigate = useNavigate()
     const [isOpen, setIsOpen] = useState(true)
 
     const sidebarMenu = [
         {
             title: 'Dashboard',
-            icon: <LayoutDashboard className='size-10 text-[#707070] hover:text-white hover:bg-[#303030] transition-all p-1 rounded-md' />
+            icon: <LayoutDashboard className='size-10 text-[#707070] hover:text-white hover:bg-[#303030] transition-all p-1 rounded-md' />,
+            path:'/dashboard'
         },
         {
             title: 'Shipments',
-            icon: <Package className='size-10 text-[#707070] hover:text-white hover:bg-[#303030] transition-all p-1 rounded-md' />
+            icon: <Package className='size-10 text-[#707070] hover:text-white hover:bg-[#303030] transition-all p-1 rounded-md' />,
+            path:'/shipment'
         },
         {
             title: 'LogOut',
-            icon: <LogOut className='size-10 text-[#707070] hover:text-red-400 hover:bg-[#303030] transition-all p-1 rounded-md' />
+            icon: <LogOut className='size-10 text-[#707070] hover:text-red-400 hover:bg-[#303030] transition-all p-1 rounded-md' />,
+            path:"/signin"
         },
     ]
 
@@ -32,7 +37,7 @@ export default function SideBar() {
             <div className={`flex flex-col gap-8 ml-5`}>
                 {sidebarMenu.map((item, index) => {
                     return (
-                        <div key={index} className={`${isOpen? "flex":""} hover:font-semibold items-center gap-2 cursor-pointer `}>
+                        <div key={index} onClick={()=> navigate(item.path)} className={`${isOpen? "flex":""} hover:font-semibold items-center gap-2 cursor-pointer `}>
                             {item.icon}
                             {isOpen ? item.title : ""}
                         </div>

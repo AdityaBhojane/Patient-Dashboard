@@ -1,7 +1,7 @@
 import { BloodPressure, BloodPressureGraph, BloodSugar, BloodSugarGraph, HeartRate, HeartRateGraph } from "@/assets";
 
 type HeathCardProp = {
-  title: "BloodSugar" | "HeartRate" | "BloodPressure";
+  title: "Blood Sugar" | "Heart Rate" | "Blood Pressure";
   status: string
   count: number
 };
@@ -9,29 +9,29 @@ type HeathCardProp = {
 export default function HealthCard({ title, count, status }: HeathCardProp) {
 
   const unitType = {
-    BloodSugar: 'mg/dl',
-    HeartRate: 'bpm',
-    BloodPressure: '/72 mmhg'
+    "Blood Sugar": 'mg/dl',
+    "Heart Rate": 'bpm',
+    "Blood Pressure": '/72 mmhg'
   }
   const graphType = {
-    BloodSugar: BloodSugarGraph,
-    HeartRate: HeartRateGraph,
-    BloodPressure: BloodPressureGraph
+    "Blood Sugar": BloodSugarGraph,
+    "Heart Rate": HeartRateGraph,
+    "Blood Pressure": BloodPressureGraph
   }
   const statusType = {
-    BloodSugar: 'bg-[#F8DEBD]',
-    HeartRate: 'bg-[#FBF0F3]',
-    BloodPressure: 'bg-[#D0FBFF]'
+    "Blood Sugar": 'bg-[#F8DEBD]',
+    "Heart Rate": 'bg-[#FBF0F3]',
+    "Blood Pressure": 'bg-[#D0FBFF]'
   }
 
   const imageType = {
-    BloodSugar: BloodSugar,
-    HeartRate: HeartRate,
-    BloodPressure: BloodPressure
+    "Blood Sugar": BloodSugar,
+    "Heart Rate": HeartRate,
+    "Blood Pressure": BloodPressure
   }
 
   return (
-    <div className="w-full h-[250px] max-xl:h-fit border rounded-lg overflow-hidden">
+    <div className="w-full h-[250px] max-xl:h-fit border rounded-lg overflow-hidden max-[1748px]:h-[210px]">
       <div className="p-4 max-xl:flex max-xl:justify-between max-xl:items-center max-xl:flex-wrap">
         <div className="flex items-center gap-3">
           <img src={imageType[title]} alt="icon" />
