@@ -29,7 +29,7 @@ Follow the steps to run the project locally:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/shipment-tracker.git
+git clone https://github.com/AdityaBhojane/Patient-Dashboard.git
 
 # 2. Navigate into the project directory
 cd server
