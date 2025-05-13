@@ -8,6 +8,7 @@ import BloodPressureGraph from "./Group 30.png"
 import MeasureScale from "./Group 2.png"
 import BMIScale from "./Group 5.png"
 import Body from "./body.png"
+import Logo from './Standard Collection 10.png'
 
 
 export {
@@ -19,5 +20,6 @@ export {
     BloodSugarGraph,
     MeasureScale,
     BMIScale,
-    Body
+    Body,
+    Logo
 }

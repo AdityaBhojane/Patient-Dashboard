@@ -102,6 +102,7 @@ export default function SignIn() {
           )}
         </button>
       </form>
+      <p className="text-center mt-4">don't have an account? <span onClick={()=> navigate('/signup')} className="text-blue-500 cursor-pointer">sign up</span></p>
     </div>
   )
 }

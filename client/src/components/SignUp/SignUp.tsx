@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react"
 import { Loader2 } from "lucide-react"
 import { useSignup } from "@/hooks/auth/useSignUp"
+import { useNavigate } from "react-router-dom"
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -9,7 +10,7 @@ export default function SignUp() {
     email: "",
     password: ""
   })
-
+  const navigate = useNavigate()
   const [error, setError] = useState("")
 
 
@@ -109,6 +110,8 @@ export default function SignUp() {
           )}
         </button>
       </form>
+      <p className="text-center mt-4">already have an account? <span onClick={() => navigate('/signin')} className="text-blue-500 cursor-pointer">sign in</span></p>
+
     </div>
   )
 }

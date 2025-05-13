@@ -18,7 +18,6 @@ export const getPatientMeasurementService = async(id)=>{
     try {
         const response = await patientMeasurement.find({userId:id});
         if(!response) throw new Error("no shipment for user");
-        console.log(response.length)
         return response
     } catch (error) {
         console.log(error);
@@ -30,7 +29,6 @@ export const getProgressService = async(id)=>{
     try {
         const response = await ProgressTrack.find({userId:id});
         if(!response) throw new Error("no shipment for user");
-        console.log(response.length)
         return response
     } catch (error) {
         console.log(error);
