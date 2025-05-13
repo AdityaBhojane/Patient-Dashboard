@@ -9,6 +9,8 @@ import SignIn from "./components/SignIn/SignIn";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import ErrorPage from "./Page/ErrorPage";
 
+import LoaderScreen from "./components/Loader/Loader";
+
 export default function App() {
 
 
@@ -16,7 +18,7 @@ export default function App() {
   return (
     <>
       <Routes>
-        <Route path={"/"} element={<h1>Loading</h1>} />
+        <Route path={"/"} element={<LoaderScreen/>} />
         <Route path="/dashboard" element={<ProtectedRoute><DashboardContainer /></ProtectedRoute>}>
           <Route index element={<PatientOverview />} />
         </Route>

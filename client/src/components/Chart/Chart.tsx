@@ -1,6 +1,6 @@
 "use client"
 
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
+import { BarChart, Bar, CartesianGrid, XAxis } from "recharts"
 
 import {
   Card,
@@ -73,34 +73,34 @@ export function Chart() {
       <CardContent>
         {isFetching ? <div className="w-full h-full flex justify-center"><Loader2 /></div> :
           <ChartContainer className="" config={chartConfig}>
-            <AreaChart
+            <BarChart
               accessibilityLayer
               data={chartData}
-              margin={{
-                left: 5,
-                right: 5,
-              }}
+              // margin={{
+              //   left: 5,
+              //   right: 5,
+              // }}
             >
               <CartesianGrid vertical={false} />
               <XAxis
                 dataKey="month"
                 tickLine={false}
                 axisLine={false}
-                tickMargin={5}
+                tickMargin={8}
                 tickFormatter={(value) => value.slice(0, 3)}
               />
               <ChartTooltip
                 cursor={false}
                 content={<ChartTooltipContent indicator="line" />}
               />
-              <Area
+              <Bar
                 dataKey="weight"
-                type="natural"
+                type="linear"
                 fill="var(--color-weight)"
                 fillOpacity={0.4}
                 stroke="var(--color-weight)"
               />
-            </AreaChart>
+            </BarChart>
           </ChartContainer>}
       </CardContent>
 

@@ -44,7 +44,7 @@ export default function ShipmentList() {
   return (
     <div className="">
       <h2 className="text-2xl py-4 px-6 font-semibold border">Shipment Details </h2>
-      <div className="w-full p-4 grid h-[70%] grid-cols-2 max-xl:grid-cols-1 items-center justify-center gap-4 ">
+      <div className="w-full p-4 grid h-fit grid-cols-2 max-xl:grid-cols-1 items-center justify-center gap-4 ">
         {shipment?.map((shipmentItem, index) => (
           <div
             key={shipmentItem._id || index}
